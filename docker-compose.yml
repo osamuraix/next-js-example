@@ -1,0 +1,40 @@
+version: "3"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: robinhood-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3306:3306"
+    networks:
+      - app-tier
+
+  # API service
+  api:
+    build:
+      context: .
+    command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
+    container_name: robinhood-api-container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    networks:
+      - app-tier
