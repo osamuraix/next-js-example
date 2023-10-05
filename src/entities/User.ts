@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 export interface IUser {
   userId: number;
@@ -9,8 +9,8 @@ export interface IUser {
   status: boolean;
 }
 
-@Entity({ name: 'user' })
-export class User implements IUser {
+@Entity()
+export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn()
   userId!: number;
 

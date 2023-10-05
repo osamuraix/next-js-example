@@ -1,0 +1,12 @@
+{
+  "topicCategory": {
+    "interview": "Interview",
+    "onboarding": "Onboarding",
+    "meeting": "Meeting"
+  },
+  "topicStatus": {
+    "todo": "To Do",
+    "in_progress": "In Progress",
+    "done": "Done"
+  }
+}

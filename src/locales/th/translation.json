@@ -1,0 +1,12 @@
+{
+  "topicCategory": {
+    "interview": "นัดสัมภาษณ์งาน",
+    "onboarding": "นัดเริ่มงาน",
+    "meeting": "นัดประชุมงาน"
+  },
+  "topicStatus": {
+    "todo": "กำลังรอ",
+    "in_progress": "อยู่ในขั้นตอน",
+    "done": "เสร็จสิ้น"
+  }
+}
