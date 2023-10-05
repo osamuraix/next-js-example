@@ -19,7 +19,7 @@ export class SeedController {
       user.password = "password";
       user.fullname = Faker.name.findName();
       user.email = Faker.internet.email();
-      user.status = true;
+      user.avatar = Faker.image.avatar();
 
       await userRepository.save(user);
     }

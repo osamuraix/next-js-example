@@ -16,5 +16,5 @@ export class GetAllUserQueryParams implements IGetAllUserQueryParams {
 
   @IsOptional()
   @IsBoolean()
-  status?: boolean;
+  deleted?: boolean;
 }

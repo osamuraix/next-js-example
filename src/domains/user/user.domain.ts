@@ -1,5 +1,6 @@
 import { Service } from "typedi";
-import { User } from "../../entities/User";
+import { NotFoundError } from "routing-controllers";
+import { IUser } from "../../entities/User";
 import { UserRepository } from "../../repositories/UserRepository";
 import { IGetAllUserQueryParams } from "./user.interface";
 
@@ -7,11 +8,17 @@ import { IGetAllUserQueryParams } from "./user.interface";
 export class UserDomain {
   constructor(private userRepo: UserRepository) {}
 
-  async findAll(query: IGetAllUserQueryParams): Promise<User[]> {
+  async findAll(query: IGetAllUserQueryParams): Promise<IUser[]> {
     return this.userRepo.findAll({ where: query });
   }
 
-  async findByUserId(userId: string): Promise<User | null> {
-    return this.userRepo.findOneBy({ userId });
+  async findByUserId(userId: string) {
+    const data = await this.userRepo.findOneBy({ userId });
+
+    if (!data) {
+      throw new NotFoundError("User not found");
+    }
+
+    return data;
   }
 }
