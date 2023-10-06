@@ -12,7 +12,7 @@ export class UserDomain {
     return this.userRepo.findAll({ where: query });
   }
 
-  async findByUserId(userId: string) {
+  async findByUserId(userId: number) {
     const data = await this.userRepo.findOneBy({ userId });
 
     if (!data) {

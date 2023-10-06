@@ -33,7 +33,7 @@ export class UserController {
   }
 
   @Get("/:userId")
-  getUser(@Param("userId") userId: string) {
+  getUser(@Param("userId") userId: number) {
     return this.userDomain.findByUserId(userId);
   }
 }
